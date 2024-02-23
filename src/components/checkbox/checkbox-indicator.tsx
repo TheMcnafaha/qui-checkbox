@@ -3,6 +3,7 @@ import {
   component$,
   useContext,
   useContextProvider,
+  $,
   useSignal,
   PropsOf,
   Slot,
@@ -19,10 +20,29 @@ export const CheckboxIndicator = component$<CheckboxIndicatorProps>((props) => {
       e.preventDefault();
     }
   });
-
+  const handleKeyDown$ = $((e: KeyboardEvent) => {
+    if (e.key === " ") {
+      checkSig.value = !checkSig.value;
+    }
+  });
+  const appliedClass = getClass(checkSig);
   return (
-    <div {...props} tabIndex={0} onKeyDown$={[handleKeyDownSync$]}>
-      <Slot />
+    <div
+      {...props}
+      tabIndex={0}
+      onKeyDown$={[handleKeyDownSync$, handleKeyDown$]}
+    >
+      <div class={appliedClass}>
+        <Slot />
+      </div>
     </div>
   );
 });
+function getClass(boolSig: Signal<boolean>) {
+  if (boolSig.value) {
+    const className = "block";
+    return className;
+  }
+  const className = "invisible";
+  return className;
+}

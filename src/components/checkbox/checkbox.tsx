@@ -13,7 +13,7 @@ export type CheckboxProps = {
 } & PropsOf<"div">;
 
 export const Checkbox = component$<CheckboxProps>((props) => {
-  const defaultSig = useSignal(false);
+  const defaultSig = useSignal(true);
   const appliedSig = props.userSig ?? defaultSig;
   useContextProvider(CheckboxContext, appliedSig);
   return (
