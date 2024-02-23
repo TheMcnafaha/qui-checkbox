@@ -1,15 +1,20 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { Checkbox } from "~/components/checkbox/checkbox";
+import { CheckboxIndicator } from "~/components/checkbox/checkbox-indicator";
 
 export default component$(() => {
   return (
     <>
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
+      <Checkbox class="bg-slate-900 p-7">
+        <div class="flex items-center gap-3">
+          <CheckboxIndicator class="w-fit bg-slate-600 p-2">
+            ✅
+          </CheckboxIndicator>
+          <p>No other stuff is needed here</p>
+        </div>
+      </Checkbox>
+      <div class="h-[1900px] bg-black"></div>
     </>
   );
 });
